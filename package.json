@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "nodemon": "nodemon app.js"
+    "nodemon": "nodemon app.js",
+    "stop": "npx kill-port 4000"
   },
   "author": "shinyZu",
   "license": "ISC",
