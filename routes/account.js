@@ -50,7 +50,7 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   const body = req.body;
   try {
-    const account = await Account(req.params.id);
+    const account = await Account.findById(req.params.id);
     account.first_name = body.first_name;
     account.surname = body.surname;
     account.gender = body.gender;

@@ -16,9 +16,9 @@ con.on("open", () => {
 //------------------------------------------------------------
 
 const account = require("./routes/account");
-// const post = require("./routes/post");
+const post = require("./routes/post");
 app.use("/account", account);
-// app.use("/posts", post);
+app.use("/posts", post);
 
 app.get("/", (req, res) => {
   console.log("Hi Shiny.......");
