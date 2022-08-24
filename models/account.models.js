@@ -21,14 +21,17 @@ const accountSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+    unique: true,
   },
   phone_no: {
     type: Number,
     required: true,
+    unique: true,
   },
   email: {
     type: String,
     required: true,
+    unique: true,
   },
 });
 
