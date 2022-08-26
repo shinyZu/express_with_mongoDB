@@ -1,4 +1,6 @@
+require("dotenv").config();
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const app = express();
 app.use(express.json());
 
@@ -13,34 +15,32 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
-  const body = req.body;
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
 
-  //   const account = await Account.findOne(body.email);
-  //   console.log(account);
+  Account.findOne({ password: password, email: email }, (err, user) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    if (!user) {
+      return res
+        .status(404)
+        .send("Invalid Credentials...Please check your email or password!");
+    }
 
-  const account = new Account({
-    first_name: "",
-    surname: "",
-    gender: "",
-    dob: "",
-    password: body.password,
-    phone_no: "",
-    email: body.email,
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
+    res.json({
+      token,
+      // account: {
+      //   id: user._id,
+      //   first_name: user.first_name,
+      //   surname: user.surname,
+      //   gender: user.gender,
+      //   dob: user.dob,
+      //   phone_no: user.phone_no,
+      //   email: user.email,
+      // },
+    });
   });
-
-  try {
-    const response = await account.save();
-    console.log("11111111");
-    res.json(response);
-
-    // if (account) {
-    //   res.send("account verified successfully");
-    // } else {
-    //   res.send("account verification failed");
-    // }
-  } catch (error) {
-    res.send("Error : " + error);
-  }
 });
 module.exports = router;

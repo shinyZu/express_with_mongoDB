@@ -82,25 +82,6 @@ router.post("/", async (req, res) => {
   });
 });
 
-router.post("/login", async (req, res) => {
-  const body = req.body;
-
-  Account.findOne(
-    { password: body.password, email: body.email },
-    (err, user) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-      if (!user) {
-        res
-          .status(404)
-          .send("Invalid Credentials...Please check your email or password!");
-      }
-      res.status(200).send(user);
-    }
-  );
-});
-
 router.put("/:id", async (req, res) => {
   const body = req.body;
   // try {

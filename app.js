@@ -1,11 +1,11 @@
+require("dotenv").config();
 const express = require("express");
-const port = 4000;
 const app = express();
 app.use(express.json());
 
 //------------------------------------------------------------
 const mongoose = require("mongoose");
-const url = "mongodb://localhost/express_mongoDB";
+const url = process.env.URL;
 mongoose.connect(url, { useNewUrlParser: true });
 const con = mongoose.connection;
 
@@ -15,18 +15,18 @@ con.on("open", () => {
 });
 //------------------------------------------------------------
 
-// const login = require("./routes/login");
+const login = require("./routes/login");
 const account = require("./routes/account");
 const post = require("./routes/post");
-// app.use("/login", login);
+
+app.use("/auth", login);
 app.use("/account", account);
 app.use("/posts", post);
 
 app.get("/", (req, res) => {
-  console.log("Hi Shiny.......");
-  res.send("<h1>Hello Shiny!!!!!!!!!</h1>");
+  res.send("<h1>Facebook Clone App</h1>");
 });
 
-app.listen(port, (req, res) => {
-  console.log(`express app is listening on port ${port}`);
+app.listen(process.env.PORT, (req, res) => {
+  console.log(`express app is listening on port ${process.env.PORT}`);
 });
