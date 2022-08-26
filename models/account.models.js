@@ -27,6 +27,14 @@ const accountSchema = new mongoose.Schema({
     type: Number,
     required: true,
     unique: true,
+    // validate: [(val) => val.length === 10, "Invalid Phone No"],
+    validate: {
+      validator: function (val) {
+        return val.toString().length === 9;
+      },
+      // message: (val) => `${val.value} has to be 9 digits`,
+      message: (val) => "Invalid Phone No",
+    },
   },
   email: {
     type: String,

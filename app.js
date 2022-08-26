@@ -15,8 +15,10 @@ con.on("open", () => {
 });
 //------------------------------------------------------------
 
+// const login = require("./routes/login");
 const account = require("./routes/account");
 const post = require("./routes/post");
+// app.use("/login", login);
 app.use("/account", account);
 app.use("/posts", post);
 
