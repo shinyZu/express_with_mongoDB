@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
     const accounts = await Account.find();
     res.json(accounts);
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
@@ -100,7 +100,7 @@ router.put("/:id", async (req, res) => {
   //   res.send("Error : " + error);
   // }
 
-  Account.findById(req.params.id, async (err, account) => {
+  Account.findById(req.params.id, (err, account) => {
     if (err) {
       return res.status(500).send(err);
     }
