@@ -1,13 +1,14 @@
 require("dotenv").config();
-const express = require("express");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const express = require("express");
 const app = express();
 app.use(express.json());
 
 const router = express.Router();
 const Account = require("../models/account.models");
 
-router.get("/", async (req, res) => {
+router.get("/", (req, res) => {
   try {
     res.json("Login");
   } catch (error) {
@@ -20,6 +21,7 @@ router.post("/login", async (req, res) => {
 
   Account.findOne({ password: password, email: email }, (err, user) => {
     if (err) {
+      // return handleError(err);
       return res.status(500).send(err);
     }
     if (!user) {
