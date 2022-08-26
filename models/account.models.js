@@ -33,7 +33,7 @@ const accountSchema = new mongoose.Schema({
         return val.toString().length === 9;
       },
       // message: (val) => `${val.value} has to be 9 digits`,
-      message: (val) => "Invalid Phone No",
+      message: (val) => "Invalid Phone No!",
     },
   },
   email: {

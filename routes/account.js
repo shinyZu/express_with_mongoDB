@@ -22,7 +22,6 @@ router.get("/:id", async (req, res) => {
   //   res.send("Error : " + error);
   // }
 
-  // try {
   Account.findById(req.params.id, (err, account) => {
     if (err) {
       return res.status(500).send(err);
@@ -32,9 +31,6 @@ router.get("/:id", async (req, res) => {
     }
     res.json(account);
   });
-  // } catch (error) {
-  //   res.send("Error : " + error);
-  // }
 });
 
 router.post("/", async (req, res) => {
@@ -70,7 +66,9 @@ router.post("/", async (req, res) => {
       if (err.keyPattern.phone_no == 1) {
         return res.status(404).send("Duplicate Phone No!");
       } else if (err.keyPattern != null) {
-        return res.status(404).send("Account Already Exist!");
+        return res
+          .status(404)
+          .send("An Account with this Email already exist!");
       } else if (!result) {
         return res
           .status(404)
