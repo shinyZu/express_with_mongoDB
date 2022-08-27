@@ -45,6 +45,15 @@ router.get("/:id", async (req, res) => {
   });
 });
 
+router.get("/user/:id", async (req, res) => {
+  try {
+    const posts = await Post.find({ user_id: req.params.id });
+    res.json(posts);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 router.get("/file/:filename", async (req, res) => {
   // console.log(gfs.files);
   // console.log(req.params.filename);

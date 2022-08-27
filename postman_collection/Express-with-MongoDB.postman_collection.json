@@ -1,0 +1,453 @@
+{
+	"info": {
+		"_postman_id": "9ffb9ad9-d630-4f05-90b5-9aeb3d68756c",
+		"name": "Express-with-MongoDB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21404145"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "getAllAccounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createAccount",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Nimal\",\n    \"surname\": \"Perera\",\n    \"gender\": \"male\",\n    \"dob\": \"1999-08-24\",\n    \"password\": \"nimal123\",\n    \"phone_no\": 716455452,\n    \"email\": \"nimal@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAccount",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/account/630926d1710a70a6591d1903",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"account",
+								"630926d1710a70a6591d1903"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAccountByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/account/6309279cf77f8e3914dbf6a6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"account",
+								"6309279cf77f8e3914dbf6a6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateAccount",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Nimal\",\n    \"surname\": \"Perera\",\n    \"gender\": \"male\",\n    \"dob\": \"1999-08-24\",\n    \"password\": \"nimal123\",\n    \"phone_no\": 71645545,\n    \"email\": \"nimal@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/account/630624746404d3b95c3050f6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"account",
+								"630624746404d3b95c3050f6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "getAllPosts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPostWithImage",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "630624376404d3b95c3050ec",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "2022-08-27",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "02:48:00",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Image Title",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"type": "file",
+									"src": "/home/shinyT480/Downloads/Images/car.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePost",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":\"6309279cf77f8e3914dbf6a0\",\n    \"date\":\"2022-08-26\",\n    \"time\":\"01:55:00\",\n    \"title\":\"Sample Title\",\n    \"body\":\"Sample Body\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/posts/630633e69daf8b11051ab463",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"posts",
+								"630633e69daf8b11051ab463"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePost",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/posts/630633e69daf8b11051ab463",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"posts",
+								"630633e69daf8b11051ab463"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPostsByUserID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/posts/user/630a75a18cfcab1107f4aa4f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"posts",
+								"user",
+								"630a75a18cfcab1107f4aa4f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPostedImage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/posts/file/1661633820962-car.png",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"posts",
+								"file",
+								"1661633820962-car.png"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePostedImage",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/posts/file/1661629882887-female_profile.jpg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"posts",
+								"file",
+								"1661629882887-female_profile.jpg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPostByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/posts/630a72cfb8fd4a19934d881e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"posts",
+								"630a72cfb8fd4a19934d881e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPostWithoutImage",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":\"630620b1802da44d4c3184f8\",\n    \"date\":\"2022-08-26\",\n    \"time\":\"01:55:00\",\n    \"title\":\"Sample Title\",\n    \"body\":\"Sample Body\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"nimal123\",\n    \"email\": \"nimal@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TestUpload",
+			"item": [
+				{
+					"name": "uploadImage",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/shinyT480/Downloads/Images/female_profile.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/file/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"file",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getImage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/file/1661624848732-female_profile.jpg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"file",
+								"1661624848732-female_profile.jpg"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
