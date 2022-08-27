@@ -195,6 +195,18 @@ router.delete("/:id", async (req, res) => {
   });
 });
 
+router.delete("/file/:filename", (req, res) => {
+  gfs.files.deleteOne({ filename: req.params.filename }, (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    if (result.deletedCount === 0) {
+      return res.status(404).send("File Not Found");
+    }
+    return res.status(200).send("Image Deleted Successfully!");
+  });
+});
+
 module.exports = router;
 
 /* // setup multer for storing uploaded files
