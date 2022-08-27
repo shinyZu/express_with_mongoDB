@@ -5,15 +5,15 @@ const { GridFsStorage } = require("multer-gridfs-storage");
 const gfsStorage = new GridFsStorage({
   url: process.env.URL,
   file: (req, file) => {
-    const match = ["image/png", "image/jpeg", "image/jpg"];
+    const match = ["image/png", "image/jpeg" /* , "image/jpg" */];
 
     if (match.indexOf(file.mimetype) === -1) {
-      const filename = `${Date.now()}fbclone-${file.originalname}`;
+      const filename = `${Date.now()}-${file.originalname}`;
       return filename;
     }
     return {
       bucketName: "assets",
-      filename: `${Date.now()}fbclone-${file.originalname}`,
+      filename: `${Date.now()}-${file.originalname}`,
     };
   },
 });

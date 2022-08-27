@@ -3,9 +3,8 @@ const bodyParser = require("body-parser");
 const fs = require("fs");
 const path = require("path");
 var Grid = require("gridfs-stream");
+const mongoose = require("mongoose");
 require("dotenv").config();
-// const crypto = require("crypto");
-// const randomBytes = require("randombytes");
 
 const app = express();
 app.use(express.json());
@@ -15,27 +14,17 @@ const Post = require("../models/post.models");
 const Account = require("../models/account.models");
 const upload = require("../middleware/upload");
 
-/* // setup multer for storing uploaded files
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    // cb(null, "./public/assets/images");
-    cb(null, "uploads");
-  },
-  filename: (req, file, cb) => {
-    // console.log(file.fieldname); // body
-    // console.log(file.originalname); // car.png
-    // cb(null, file.originalname + "-" + Date.now());
-    cb(null, file.originalname);
-  },
-});
+const { conn } = require("../db.configs/db");
 
-const upload = multer({
-  storage: storage,
-  // limits: {
-  //   fieldSize: 1024 * 1024 * 3,
-  // },
+let gfs, gridfsBucket;
+
+conn.once("open", () => {
+  gridfsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
+    bucketName: "assets",
+  });
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection("assets");
 });
- */
 
 router.get("/", async (req, res) => {
   try {
@@ -65,6 +54,24 @@ router.get("/:id", async (req, res) => {
   });
 });
 
+router.get("/file/:filename", async (req, res) => {
+  // console.log(gfs.files);
+  // console.log(req.params.filename);
+
+  gfs.files.findOne({ filename: req.params.filename }, (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    if (!result) {
+      return res.status(404).send("File Not Found");
+    }
+    // const readStream = gfs.createReadStream(result.filename);
+    // const readStream = gfs.openDownloadStream(result.filename);
+    const readStream = gridfsBucket.openDownloadStreamByName(result.filename);
+    readStream.pipe(res);
+  });
+});
+
 router.post("/", upload.single("body"), async (req, res) => {
   const body = req.body;
 
@@ -72,7 +79,7 @@ router.post("/", upload.single("body"), async (req, res) => {
   // if (req.file === undefined) return res.send("No Image have been selected!");
 
   if (req.file) {
-    const imgUrl = `http://localhost:4000/file/${req.file.filename}`;
+    const imgUrl = `http://localhost:4080/file/${req.file.filename}`;
     post = new Post({
       user_id: body.user_id,
       date: body.date,
@@ -189,6 +196,28 @@ router.delete("/:id", async (req, res) => {
 });
 
 module.exports = router;
+
+/* // setup multer for storing uploaded files
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    // cb(null, "./public/assets/images");
+    cb(null, "uploads");
+  },
+  filename: (req, file, cb) => {
+    // console.log(file.fieldname); // body
+    // console.log(file.originalname); // car.png
+    // cb(null, file.originalname + "-" + Date.now());
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  // limits: {
+  //   fieldSize: 1024 * 1024 * 3,
+  // },
+});
+ */
 
 /* router.post("/", multer(upload).single("body"), async (req, res) => {
   const body = req.body;
