@@ -1,17 +1,32 @@
 require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
+const Grid = require("gridfs-stream");
+
 const app = express();
 app.use(express.json());
 
 //------------------------------------------------------------
-const mongoose = require("mongoose");
 const url = process.env.URL;
-mongoose.connect(url, { useNewUrlParser: true });
-const con = mongoose.connection;
+
+// Create MongoDB Connection
+mongoose.connect(url, {
+  useNewUrlParser: true,
+});
+const conn = mongoose.connection;
 
 // runs everytime when connected to mongodb
-con.on("open", () => {
+conn.on("open", () => {
   console.log("MongoDB connected!");
+});
+
+// Init gfs
+let gfs;
+conn.once("open", () => {
+  // console.log("Once Open!");
+  //Init stream
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection("assets");
 });
 //------------------------------------------------------------
 
