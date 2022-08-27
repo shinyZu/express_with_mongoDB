@@ -46,12 +46,23 @@ router.get("/:id", async (req, res) => {
 });
 
 router.get("/user/:id", async (req, res) => {
-  try {
-    const posts = await Post.find({ user_id: req.params.id });
-    res.json(posts);
-  } catch (error) {
-    res.status(500).send(error);
-  }
+  Account.findById(req.params.id, (err1, account) => {
+    if (err1) {
+      return res.status(500).send(err1);
+    }
+    if (!account) {
+      return res.status(404).send("User doesn't exist!");
+    }
+    Post.find({ user_id: req.params.id }, (err2, resultPosts) => {
+      if (err2) {
+        return res.status(500).send(err2);
+      }
+      if (!resultPosts) {
+        return res.status(404).send("No Any Posts");
+      }
+      res.json(resultPosts);
+    });
+  });
 });
 
 router.get("/file/:filename", async (req, res) => {

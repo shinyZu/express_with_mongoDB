@@ -159,7 +159,7 @@
 							"formdata": [
 								{
 									"key": "user_id",
-									"value": "630624376404d3b95c3050ec",
+									"value": "630620b1802da44d4c3184f8",
 									"type": "text"
 								},
 								{
@@ -253,7 +253,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/posts/user/630a75a18cfcab1107f4aa4f",
+							"raw": "http://localhost:4000/posts/user/630620b1802da44d4c3184f8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -262,7 +262,7 @@
 							"path": [
 								"posts",
 								"user",
-								"630a75a18cfcab1107f4aa4f"
+								"630620b1802da44d4c3184f8"
 							]
 						}
 					},
@@ -316,7 +316,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/posts/630a72cfb8fd4a19934d881e",
+							"raw": "http://localhost:4000/posts/630a8510f3a1e3cbd2e7f463",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -324,7 +324,7 @@
 							"port": "4000",
 							"path": [
 								"posts",
-								"630a72cfb8fd4a19934d881e"
+								"630a8510f3a1e3cbd2e7f463"
 							]
 						}
 					},
