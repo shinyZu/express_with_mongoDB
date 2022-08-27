@@ -1,6 +1,6 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const Grid = require("gridfs-stream");
-require("dotenv").config();
 
 const url = process.env.URL;
 

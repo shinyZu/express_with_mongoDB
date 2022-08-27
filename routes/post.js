@@ -1,19 +1,17 @@
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const path = require("path");
-var Grid = require("gridfs-stream");
+const Grid = require("gridfs-stream");
 const mongoose = require("mongoose");
-require("dotenv").config();
-
+const router = express.Router();
 const app = express();
 app.use(express.json());
-const router = express.Router();
 
 const Post = require("../models/post.models");
 const Account = require("../models/account.models");
 const upload = require("../middleware/upload");
-
 const { conn } = require("../db.configs/db");
 
 let gfs, gridfsBucket;
@@ -36,13 +34,6 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  // try {
-  //   const post = await Post.findById(req.params.id);
-  //   res.json(post);
-  // } catch (error) {
-  //   res.send("Error : " + error);
-  // }
-
   Post.findById(req.params.id, (err, resultPost) => {
     if (err) {
       return res.status(500).send(err);
@@ -104,7 +95,6 @@ router.post("/", upload.single("body"), async (req, res) => {
     if (!account) {
       return res.status(404).send("User doesn't exist!");
     }
-    // res.json(account);
     post.save((err, result) => {
       if (err) {
         if (err.errors) {
@@ -118,19 +108,6 @@ router.post("/", upload.single("body"), async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const body = req.body;
-  // try {
-  //   const post = await Post.findById(req.params.id);
-  //   post.user_id = body.user_id;
-  //   post.date = body.date;
-  //   post.time = body.time;
-  //   post.title = body.title;
-  //   post.body = body.body;
-
-  //   const response = await post.save();
-  //   res.json(response);
-  // } catch (error) {
-  //   res.send("Error : " + error);
-  // }
 
   Account.findById(body.user_id, (err1, account) => {
     if (err1) {
@@ -139,7 +116,6 @@ router.put("/:id", async (req, res) => {
     if (!account) {
       return res.status(404).send("User doesn't exist!");
     }
-    // res.json(account);
     Post.findById(req.params.id, (err2, resultPost) => {
       if (err2) {
         return res.status(500).send(err2);
@@ -155,7 +131,6 @@ router.put("/:id", async (req, res) => {
 
       resultPost.save((err3, result) => {
         if (err3) {
-          // return res.status(500).send(err2.message);
           return res.status(500).send(err3.message.split(":")[2]);
         }
         if (!result) {
@@ -168,14 +143,6 @@ router.put("/:id", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-  // try {
-  //   const post = await Post.findById(req.params.id);
-  //   const response = await post.remove();
-  //   res.json(response);
-  // } catch (error) {
-  //   res.send("Error : " + error);
-  // }
-
   Post.findById(req.params.id, (err, resultPost) => {
     if (err) {
       return res.status(500).send(err);

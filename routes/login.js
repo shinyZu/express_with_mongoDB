@@ -3,9 +3,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const express = require("express");
 const app = express();
+const router = express.Router();
 app.use(express.json());
 
-const router = express.Router();
 const Account = require("../models/account.models");
 
 router.get("/", (req, res) => {
