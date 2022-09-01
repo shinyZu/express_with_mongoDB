@@ -159,7 +159,7 @@
 							"formdata": [
 								{
 									"key": "user_id",
-									"value": "630620b1802da44d4c3184f8",
+									"value": "630624376404d3b95c3050ec",
 									"type": "text"
 								},
 								{
@@ -180,7 +180,7 @@
 								{
 									"key": "body",
 									"type": "file",
-									"src": "/home/shinyT480/Downloads/Images/car.png"
+									"src": "/home/shinyT480/Downloads/Images/ijse-logo.png"
 								}
 							]
 						},
@@ -233,7 +233,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/posts/630633e69daf8b11051ab463",
+							"raw": "http://localhost:4000/posts/630a851cf3a1e3cbd2e7f469",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -241,7 +241,7 @@
 							"port": "4000",
 							"path": [
 								"posts",
-								"630633e69daf8b11051ab463"
+								"630a851cf3a1e3cbd2e7f469"
 							]
 						}
 					},
@@ -253,7 +253,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/posts/user/630620b1802da44d4c3184f8",
+							"raw": "http://localhost:4000/posts/user/630624376404d3b95c3050ec",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -262,7 +262,7 @@
 							"path": [
 								"posts",
 								"user",
-								"630620b1802da44d4c3184f8"
+								"630624376404d3b95c3050ec"
 							]
 						}
 					},
@@ -272,6 +272,27 @@
 					"name": "getPostedImage",
 					"request": {
 						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/posts/file/1662042243812-ijse-logo.png",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"posts",
+								"file",
+								"1662042243812-ijse-logo.png"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePostedImage",
+					"request": {
+						"method": "DELETE",
 						"header": [],
 						"url": {
 							"raw": "http://localhost:4000/posts/file/1661633820962-car.png",
@@ -290,33 +311,12 @@
 					"response": []
 				},
 				{
-					"name": "deletePostedImage",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:4000/posts/file/1661629882887-female_profile.jpg",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "4000",
-							"path": [
-								"posts",
-								"file",
-								"1661629882887-female_profile.jpg"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "getPostByID",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/posts/630a8510f3a1e3cbd2e7f463",
+							"raw": "http://localhost:4000/posts/6310bb80d3e1588a090f037a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -324,7 +324,7 @@
 							"port": "4000",
 							"path": [
 								"posts",
-								"630a8510f3a1e3cbd2e7f463"
+								"6310bb80d3e1588a090f037a"
 							]
 						}
 					},
@@ -387,61 +387,6 @@
 							"path": [
 								"auth",
 								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "TestUpload",
-			"item": [
-				{
-					"name": "uploadImage",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"type": "file",
-									"src": "/home/shinyT480/Downloads/Images/female_profile.jpg"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:4000/file/upload",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "4000",
-							"path": [
-								"file",
-								"upload"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getImage",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:4000/file/1661624848732-female_profile.jpg",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "4000",
-							"path": [
-								"file",
-								"1661624848732-female_profile.jpg"
 							]
 						}
 					},
